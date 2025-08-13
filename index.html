@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <style>
+      body {
+        --c0: #1e0010;  /* witchhazel */
+        --c1: #ab0a0a;  /* fae */
+        --c2: #009a4a;  /* fae */
+        --c3: #a79c00;  /* fae */
+        --c4: #1b7c8b;  /* fae */
+        --c5: #d84a7c;  /* fae */
+        --c6: #9253ff;  /* fae */
+        --c7: #DCC8FF;  /* witchhazel */
+        --c8: #3B364E;  /* witchhazel */
+        --c9: #DC7070;  /* witchhazel */
+        --ca: #81FFBE;  /* witchhazel */
+        --cb: #FFF9A3;  /* witchhazel */
+        --cc: #1Bc5E0;  /* witchhazel */
+        --cd: #FFB8D1;  /* witchhazel */
+        --ce: #C5A3FF;  /* witchhazel */
+        --cf: #BFBFBF;  /* witchhazel */
+
+        background: #000;
+        font-family: monospace;
+      }
+      .pallet {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        width: 30em;
+        height: 8em;
+        padding: 1em;
+        background: #fff;
+      }
+      .swatch{
+        margin: 0em;
+        text-align: center;
+        padding: 1em;
+        color: #fff;
+        text-shadow: 1px 1px black;
+      }
+      .columns {
+        display: flex;
+        gap: 1em;
+        padding: 1em;
+        background: #fff;
+      }
+      .columns>div {
+        flex: 1;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pallet">
+      <div class="swatch" style="background-color: var(--c0);">0</div>
+      <div class="swatch" style="background-color: var(--c1);">1</div>
+      <div class="swatch" style="background-color: var(--c2);">2</div>
+      <div class="swatch" style="background-color: var(--c3);">3</div>
+      <div class="swatch" style="background-color: var(--c4);">4</div>
+      <div class="swatch" style="background-color: var(--c5);">5</div>
+      <div class="swatch" style="background-color: var(--c6);">6</div>
+      <div class="swatch" style="background-color: var(--c7);">7</div>
+      <div class="swatch" style="background-color: var(--c8);">8</div>
+      <div class="swatch" style="background-color: var(--c9);">9</div>
+      <div class="swatch" style="background-color: var(--ca);">a</div>
+      <div class="swatch" style="background-color: var(--cb);">b</div>
+      <div class="swatch" style="background-color: var(--cc);">c</div>
+      <div class="swatch" style="background-color: var(--cd);">d</div>
+      <div class="swatch" style="background-color: var(--ce);">e</div>
+      <div class="swatch" style="background-color: var(--cf);">f</div>
+    </div>
+
+    <div class="columns">
+      <div style="background-color: var(--c0);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c1);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c2);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c3);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c4);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c5);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c6);">
+        <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+    </div>
+
+  </body>
+</html>
