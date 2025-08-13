@@ -20,24 +20,15 @@
         "#BFBFBF",  // witchhazel
       ];
 
-      // https://gist.github.com/jasonm23/2868981
+      // https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
       const theme_xterm16 = [
-        "#000000",
-        "#800000",
-        "#008000",
-        "#808000",
-        "#000080",
-        "#800080",
-        "#008080",
-        "#c0c0c0",
-        "#808080",
-        "#ff0000",
-        "#00ff00",
-        "#ffff00",
-        "#0000ff",
-        "#ff00ff",
-        "#00ffff",
-        "#ffffff",
+        "rgb(0, 0, 0)",       "rgb(205, 0, 0)", "rgb(0, 205, 0)", "rgb(205, 205, 0)", "rgb(0, 0, 238)",   "rgb(205, 0, 205)", "rgb(0, 205, 205)", "rgb(229, 229, 229)",
+        "rgb(127, 127, 127)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(255, 255, 0)", "rgb(92, 92, 255)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)",
+      ];
+
+      const theme_ubuntu = [
+        "rgb(1, 1, 1)",       "rgb(222, 56, 43)", "rgb(57, 181, 74)", "rgb(255, 199, 6)", "rgb(0, 111, 184)", "rgb(118, 38, 113)", "rgb(44, 181, 233)", "rgb(204, 204, 204)",
+        "rgb(128, 128, 128)", "rgb(255, 0, 0)",   "rgb(0, 255, 0)",   "rgb(255, 255, 0)", "rgb(0, 0, 255)",   "rgb(255, 0, 255)",  "rgb(0, 255, 255)",  "rgb(255, 255, 255)",
       ];
 
       function applyTheme(theme) {
@@ -87,6 +78,7 @@
     <div style="padding: 0.5em;">
       <button onclick="applyTheme(theme_fae);">fae</button>
       <button onclick="applyTheme(theme_xterm16);">xterm16</button>
+      <button onclick="applyTheme(theme_ubuntu);">ubuntu</button>
     </div>
 
     <div class="pallet">
@@ -175,7 +167,6 @@
       <div style="background-color: var(--c4);">
         <p style="color: #fff;">(background 4)</p>
         <p style="color: var(--c7);">foreground 7</p>
-        <p style="color: var(--c7);">foreground 7</p>
         <p style="color: var(--c8);">foreground 8</p>
         <p style="color: var(--c9);">foreground 9</p>
         <p style="color: var(--ca);">foreground a</p>
@@ -188,7 +179,6 @@
       <div style="background-color: var(--c5);">
         <p style="color: #fff;">(background 5)</p>
         <p style="color: var(--c7);">foreground 7</p>
-        <p style="color: var(--c7);">foreground 7</p>
         <p style="color: var(--c8);">foreground 8</p>
         <p style="color: var(--c9);">foreground 9</p>
         <p style="color: var(--ca);">foreground a</p>
@@ -200,7 +190,6 @@
       </div>
       <div style="background-color: var(--c6);">
         <p style="color: #fff;">(background 6)</p>
-        <p style="color: var(--c7);">foreground 7</p>
         <p style="color: var(--c7);">foreground 7</p>
         <p style="color: var(--c8);">foreground 8</p>
         <p style="color: var(--c9);">foreground 9</p>
