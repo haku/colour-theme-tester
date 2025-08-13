@@ -61,12 +61,14 @@
       }
       .columns {
         display: flex;
+        flex-wrap: wrap;
         gap: 1em;
         padding: 1em;
         background: #fff;
       }
       .columns>div {
-        flex: 1;
+        flex: 0 0 10em;
+        flex-grow: 1;
         text-align: center;
       }
       .columns>div>p {
@@ -109,12 +111,14 @@
         <p style="color: var(--c4);">background 4</p>
         <p style="color: var(--c5);">background 5</p>
         <p style="color: var(--c6);">background 6</p>
+        <p style="color: var(--c7);">background 7</p>
         <p style="color: #fff; background-color: var(--c1);">background 1</p>
         <p style="color: #fff; background-color: var(--c2);">background 2</p>
         <p style="color: #fff; background-color: var(--c3);">background 3</p>
         <p style="color: #fff; background-color: var(--c4);">background 4</p>
         <p style="color: #fff; background-color: var(--c5);">background 5</p>
         <p style="color: #fff; background-color: var(--c6);">background 6</p>
+        <p style="color: #fff; background-color: var(--c7);">background 7</p>
       </div>
       <div style="background-color: var(--c0);">
         <p style="color: #fff;">(background 0)</p>
@@ -191,6 +195,17 @@
       <div style="background-color: var(--c6);">
         <p style="color: #fff;">(background 6)</p>
         <p style="color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c9);">foreground 9</p>
+        <p style="color: var(--ca);">foreground a</p>
+        <p style="color: var(--cb);">foreground b</p>
+        <p style="color: var(--cc);">foreground c</p>
+        <p style="color: var(--cd);">foreground d</p>
+        <p style="color: var(--ce);">foreground e</p>
+        <p style="color: var(--cf);">foreground f</p>
+      </div>
+      <div style="background-color: var(--c7);">
+        <p style="color: #fff;">(background 7)</p>
         <p style="color: var(--c8);">foreground 8</p>
         <p style="color: var(--c9);">foreground 9</p>
         <p style="color: var(--ca);">foreground a</p>
