@@ -35,9 +35,18 @@
           "rgb(102, 102, 102)","rgb(241, 76, 76)", "rgb(35, 209, 139)", "rgb(245, 245, 67)", "rgb(59, 142, 234)", "rgb(214, 112, 214)", "rgb(41, 184, 219)", "rgb(229, 229, 229)",
         ],
       };
+      let currentTheme;
 
       // https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
       const rgbToHex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
+
+      function parseColour(text) {
+        if (text.match(/^#?[0-f]{3}$|^#?[0-f]{6}$/)) {
+          if (!text.startsWith('#')) text = '#' + text;
+          return text;
+        }
+        return null;
+      }
 
       function loadButtons() {
         const holder = document.querySelector('.buttons');
@@ -47,30 +56,70 @@
           btn.onclick = () => applyTheme(theme);
           holder.append(btn);
         }
+
+        const useedits = document.querySelector('#useedits');
+        useedits.onchange = (e) => applyTheme();
+
+        const editswatchs = document.querySelectorAll('.editpallet .swatch');
+        editswatchs.forEach((swatch) => {
+          const input = swatch.querySelector('.editinput');
+          input.oninput = (e) => {
+            const col = parseColour(input.value);
+            if (col) {
+              swatch.style.setProperty('background-color', col);
+              input.classList.remove('invalid');
+            }
+            else if (input.value.length < 1) {
+              input.classList.remove('invalid');
+            }
+            else {
+              input.classList.add('invalid');
+            }
+            applyTheme();
+          };
+          input.oninput();  // for browser remembering values.
+        });
       }
 
       function applyTheme(theme) {
+        if (theme) currentTheme = theme;
+        if (!currentTheme) return;
+        theme = currentTheme;
+
+        const useedits = document.querySelector('#useedits').checked;
+        const editinputs = document.querySelectorAll('.editpallet .editinput');
+
         const colours = themes[theme];
         const swatches = document.querySelectorAll('.pallet .swatch');
         for (let i = 0; i < 16; i++) {
-          document.documentElement.style.setProperty('--c' + i.toString(16), colours[i]);
+          let hex;
+          if (useedits) hex = parseColour(editinputs[i].value);
 
           const swatch = swatches[i];
-          const rgb = window.getComputedStyle(swatch).backgroundColor;
-          swatch.setHTMLUnsafe(i + '<br>' + rgbToHex(rgb));
+          swatch.style.setProperty('background-color', colours[i]);
+          const themehex = rgbToHex(window.getComputedStyle(swatch).backgroundColor);
+          swatch.setHTMLUnsafe(i + '<br>' + themehex);
+
+          if (!hex) hex = themehex;
+          document.documentElement.style.setProperty('--c' + i.toString(16), hex);
         }
       }
     </script>
     <style>
-      :root {
+      :root, input {
         background: #000;
+        color: #fff;
         font-family: monospace;
       }
-      .buttons button {
-        padding: 0.25em 0.5em;
+      .buttons button,
+      input[type="checkbox"], label {
+        padding: 0.25em 1em;
         margin: 0 0.5em;
+        height: 3em;
+        vertical-align: middle;
       }
-      .pallet {
+      .pallet,
+      .editpallet{
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -83,6 +132,15 @@
         padding: 1em;
         color: #fff;
         text-shadow: 1px 1px black;
+        width: 6em;
+        height: 3em;
+      }
+      .editinput {
+        width: 11ex;
+        border: 1px solid #aaa;
+      }
+      .editinput.invalid {
+        border: 1px solid #f00;
       }
       .columns {
         display: flex;
@@ -102,6 +160,7 @@
   </head>
   <body>
     <div class="buttons" style="padding: 0.5em;">
+      <input type="checkbox" id="useedits"></input><label for="useedits">edits</label>
     </div>
 
     <div class="pallet">
@@ -121,6 +180,25 @@
       <div class="swatch" style="background-color: var(--cd);">d</div>
       <div class="swatch" style="background-color: var(--ce);">e</div>
       <div class="swatch" style="background-color: var(--cf);">f</div>
+    </div>
+
+    <div class="editpallet">
+      <div class="swatch" style="background-color: #000">0<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">1<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">2<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">3<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">4<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">5<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">6<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">7<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">8<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">9<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">a<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">b<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">c<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">d<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">e<br><input type="text" class="editinput"></input></div>
+      <div class="swatch" style="background-color: #000">f<br><input type="text" class="editinput"></input></div>
     </div>
 
     <div class="columns">
