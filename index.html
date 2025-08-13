@@ -2,48 +2,58 @@
   <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0">
     <script>
-      const theme_fae = [
-        "#1e0010",  // witchhazel
-        "#ab0a0a",  // fae
-        "#009a4a",  // fae
-        "#a79c00",  // fae
-        "#1b7c8b",  // fae
-        "#d84a7c",  // fae
-        "#9253ff",  // fae
-        "#DCC8FF",  // witchhazel
-        "#3B364E",  // witchhazel
-        "#DC7070",  // witchhazel
-        "#81FFBE",  // witchhazel
-        "#FFF9A3",  // witchhazel
-        "#1Bc5E0",  // witchhazel
-        "#FFB8D1",  // witchhazel
-        "#C5A3FF",  // witchhazel
-        "#BFBFBF",  // witchhazel
-      ];
-
       // https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit
-      const theme_xterm16 = [
-        "rgb(0, 0, 0)",       "rgb(205, 0, 0)", "rgb(0, 205, 0)", "rgb(205, 205, 0)", "rgb(0, 0, 238)",   "rgb(205, 0, 205)", "rgb(0, 205, 205)", "rgb(229, 229, 229)",
-        "rgb(127, 127, 127)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(255, 255, 0)", "rgb(92, 92, 255)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)",
-      ];
-
-      const theme_ubuntu = [
-        "rgb(1, 1, 1)",       "rgb(222, 56, 43)", "rgb(57, 181, 74)", "rgb(255, 199, 6)", "rgb(0, 111, 184)", "rgb(118, 38, 113)", "rgb(44, 181, 233)", "rgb(204, 204, 204)",
-        "rgb(128, 128, 128)", "rgb(255, 0, 0)",   "rgb(0, 255, 0)",   "rgb(255, 255, 0)", "rgb(0, 0, 255)",   "rgb(255, 0, 255)",  "rgb(0, 255, 255)",  "rgb(255, 255, 255)",
-      ];
-
-      const theme_vscode = [
-        "rgb(0, 0, 0)",      "rgb(205, 49, 49)", "rgb(13, 188, 121)", "rgb(229, 229, 16)", "rgb(36, 114, 200)", "rgb(188, 63, 188)",  "rgb(17, 168, 205)", "rgb(229, 229, 229)",
-        "rgb(102, 102, 102)","rgb(241, 76, 76)", "rgb(35, 209, 139)", "rgb(245, 245, 67)", "rgb(59, 142, 234)", "rgb(214, 112, 214)", "rgb(41, 184, 219)", "rgb(229, 229, 229)",
-      ];
+      const themes = {
+        "fae": [
+          "#1e0010",  // witchhazel
+          "#ab0a0a",  // fae
+          "#009a4a",  // fae
+          "#a79c00",  // fae
+          "#1b7c8b",  // fae
+          "#d84a7c",  // fae
+          "#9253ff",  // fae
+          "#DCC8FF",  // witchhazel
+          "#3B364E",  // witchhazel
+          "#DC7070",  // witchhazel
+          "#81FFBE",  // witchhazel
+          "#FFF9A3",  // witchhazel
+          "#1Bc5E0",  // witchhazel
+          "#FFB8D1",  // witchhazel
+          "#C5A3FF",  // witchhazel
+          "#BFBFBF",  // witchhazel
+        ],
+        "xterm16": [
+          "rgb(0, 0, 0)",       "rgb(205, 0, 0)", "rgb(0, 205, 0)", "rgb(205, 205, 0)", "rgb(0, 0, 238)",   "rgb(205, 0, 205)", "rgb(0, 205, 205)", "rgb(229, 229, 229)",
+          "rgb(127, 127, 127)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(255, 255, 0)", "rgb(92, 92, 255)", "rgb(255, 0, 255)", "rgb(0, 255, 255)", "rgb(255, 255, 255)",
+        ],
+        "ubuntu": [
+          "rgb(1, 1, 1)",       "rgb(222, 56, 43)", "rgb(57, 181, 74)", "rgb(255, 199, 6)", "rgb(0, 111, 184)", "rgb(118, 38, 113)", "rgb(44, 181, 233)", "rgb(204, 204, 204)",
+          "rgb(128, 128, 128)", "rgb(255, 0, 0)",   "rgb(0, 255, 0)",   "rgb(255, 255, 0)", "rgb(0, 0, 255)",   "rgb(255, 0, 255)",  "rgb(0, 255, 255)",  "rgb(255, 255, 255)",
+        ],
+        "vscode": [
+          "rgb(0, 0, 0)",      "rgb(205, 49, 49)", "rgb(13, 188, 121)", "rgb(229, 229, 16)", "rgb(36, 114, 200)", "rgb(188, 63, 188)",  "rgb(17, 168, 205)", "rgb(229, 229, 229)",
+          "rgb(102, 102, 102)","rgb(241, 76, 76)", "rgb(35, 209, 139)", "rgb(245, 245, 67)", "rgb(59, 142, 234)", "rgb(214, 112, 214)", "rgb(41, 184, 219)", "rgb(229, 229, 229)",
+        ],
+      };
 
       // https://stackoverflow.com/questions/1740700/how-to-get-hex-color-value-rather-than-rgb-value
       const rgbToHex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
 
+      function loadButtons() {
+        const holder = document.querySelector('.buttons');
+        for (const theme in themes) {
+          const btn = document.createElement('button');
+          btn.textContent = theme;
+          btn.onclick = () => applyTheme(theme);
+          holder.append(btn);
+        }
+      }
+
       function applyTheme(theme) {
+        const colours = themes[theme];
         const swatches = document.querySelectorAll('.pallet .swatch');
         for (let i = 0; i < 16; i++) {
-          document.documentElement.style.setProperty('--c' + i.toString(16), theme[i]);
+          document.documentElement.style.setProperty('--c' + i.toString(16), colours[i]);
 
           const swatch = swatches[i];
           const rgb = window.getComputedStyle(swatch).backgroundColor;
@@ -51,11 +61,14 @@
         }
       }
     </script>
-
     <style>
       :root {
         background: #000;
         font-family: monospace;
+      }
+      .buttons button {
+        padding: 0.25em 0.5em;
+        margin: 0 0.5em;
       }
       .pallet {
         display: grid;
@@ -88,11 +101,7 @@
     </style>
   </head>
   <body>
-    <div style="padding: 0.5em;">
-      <button onclick="applyTheme(theme_fae);">fae</button>
-      <button onclick="applyTheme(theme_xterm16);">xterm16</button>
-      <button onclick="applyTheme(theme_ubuntu);">ubuntu</button>
-      <button onclick="applyTheme(theme_vscode);">vscode</button>
+    <div class="buttons" style="padding: 0.5em;">
     </div>
 
     <div class="pallet">
@@ -230,6 +239,6 @@
       </div>
     </div>
 
-    <script>applyTheme(theme_fae);</script>
+    <script>loadButtons(); applyTheme('fae');</script>
   </body>
 </html>
