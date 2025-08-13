@@ -1,24 +1,54 @@
 <html>
   <head>
-    <style>
-      body {
-        --c0: #1e0010;  /* witchhazel */
-        --c1: #ab0a0a;  /* fae */
-        --c2: #009a4a;  /* fae */
-        --c3: #a79c00;  /* fae */
-        --c4: #1b7c8b;  /* fae */
-        --c5: #d84a7c;  /* fae */
-        --c6: #9253ff;  /* fae */
-        --c7: #DCC8FF;  /* witchhazel */
-        --c8: #3B364E;  /* witchhazel */
-        --c9: #DC7070;  /* witchhazel */
-        --ca: #81FFBE;  /* witchhazel */
-        --cb: #FFF9A3;  /* witchhazel */
-        --cc: #1Bc5E0;  /* witchhazel */
-        --cd: #FFB8D1;  /* witchhazel */
-        --ce: #C5A3FF;  /* witchhazel */
-        --cf: #BFBFBF;  /* witchhazel */
+    <script>
+      const theme_fae = [
+        "#1e0010",  // witchhazel
+        "#ab0a0a",  // fae
+        "#009a4a",  // fae
+        "#a79c00",  // fae
+        "#1b7c8b",  // fae
+        "#d84a7c",  // fae
+        "#9253ff",  // fae
+        "#DCC8FF",  // witchhazel
+        "#3B364E",  // witchhazel
+        "#DC7070",  // witchhazel
+        "#81FFBE",  // witchhazel
+        "#FFF9A3",  // witchhazel
+        "#1Bc5E0",  // witchhazel
+        "#FFB8D1",  // witchhazel
+        "#C5A3FF",  // witchhazel
+        "#BFBFBF",  // witchhazel
+      ];
 
+      // https://gist.github.com/jasonm23/2868981
+      const theme_xterm16 = [
+        "#000000",
+        "#800000",
+        "#008000",
+        "#808000",
+        "#000080",
+        "#800080",
+        "#008080",
+        "#c0c0c0",
+        "#808080",
+        "#ff0000",
+        "#00ff00",
+        "#ffff00",
+        "#0000ff",
+        "#ff00ff",
+        "#00ffff",
+        "#ffffff",
+      ];
+
+      function applyTheme(theme) {
+        for (let i = 0; i < 16; i++) {
+          document.documentElement.style.setProperty('--c' + i.toString(16), theme[i]);
+        }
+      }
+    </script>
+
+    <style>
+      :root {
         background: #000;
         font-family: monospace;
       }
@@ -54,6 +84,11 @@
     </style>
   </head>
   <body>
+    <div style="padding: 0.5em;">
+      <button onclick="applyTheme(theme_fae);">fae</button>
+      <button onclick="applyTheme(theme_xterm16);">xterm16</button>
+    </div>
+
     <div class="pallet">
       <div class="swatch" style="background-color: var(--c0);">0</div>
       <div class="swatch" style="background-color: var(--c1);">1</div>
@@ -178,5 +213,6 @@
       </div>
     </div>
 
+    <script>applyTheme(theme_fae);</script>
   </body>
 </html>
