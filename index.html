@@ -98,7 +98,7 @@
           const swatch = swatches[i];
           swatch.style.setProperty('background-color', colours[i]);
           const themehex = rgbToHex(window.getComputedStyle(swatch).backgroundColor);
-          swatch.setHTMLUnsafe(i + '<br>' + themehex);
+          swatch.setHTMLUnsafe(i.toString(16) + '<br>' + themehex);
 
           if (!hex) hex = themehex;
           document.documentElement.style.setProperty('--c' + i.toString(16), hex);
@@ -239,6 +239,15 @@
         <p style="color: var(--cd);">foreground d</p>
         <p style="color: var(--ce);">foreground e</p>
         <p style="color: var(--cf);">foreground f</p>
+        <p style="color: var(--c0); background-color: var(--c7);">foreground 7</p>
+        <p style="color: var(--c0); background-color: var(--c8);">foreground 8</p>
+        <p style="color: var(--c0); background-color: var(--c9);">foreground 9</p>
+        <p style="color: var(--c0); background-color: var(--ca);">foreground a</p>
+        <p style="color: var(--c0); background-color: var(--cb);">foreground b</p>
+        <p style="color: var(--c0); background-color: var(--cc);">foreground c</p>
+        <p style="color: var(--c0); background-color: var(--cd);">foreground d</p>
+        <p style="color: var(--c0); background-color: var(--ce);">foreground e</p>
+        <p style="color: var(--c0); background-color: var(--cf);">foreground f</p>
       </div>
       <div style="background-color: var(--c1);">
         <p style="color: #fff;">(background 1)</p>
