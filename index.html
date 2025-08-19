@@ -159,8 +159,7 @@
         switch (e.key) {
           case 'e':
             event.preventDefault();
-            const useedits = document.querySelector('#useedits');
-            useedits.checked = !useedits.checked;
+            document.querySelector('#useedits').click();
             break;
         }
       });
