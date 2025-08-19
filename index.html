@@ -52,6 +52,7 @@
       function colourLuma(hex) {
         const m = [0.2126, 0.7152, 0.0722];  // ITU BT.709
         hex = hex.replace(/^#/, '');
+        if (hex.length == 3) hex = hex.split("").map(c => c + c).join("");
         let ret = 0;
         for (let i = 0; i < 3; i++) {
           ret += m[i] * parseInt(hex.substr(i * 2, 2), 16);
