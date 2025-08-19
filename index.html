@@ -48,6 +48,22 @@
         return null;
       }
 
+      // https://stackoverflow.com/questions/596216/
+      function colourLuma(hex) {
+        const m = [0.2126, 0.7152, 0.0722];  // ITU BT.709
+        hex = hex.replace(/^#/, '');
+        let ret = 0;
+        for (let i = 0; i < 3; i++) {
+          ret += m[i] * parseInt(hex.substr(i * 2, 2), 16);
+        }
+        return Math.ceil(ret);
+      }
+
+      function lumaToColour(luma) {
+        const hex = luma.toString(16);
+        return '#' + hex + hex + hex;
+      }
+
       function loadButtons() {
         const holder = document.querySelector('.buttons');
         for (const theme in themes) {
@@ -86,11 +102,14 @@
         if (!currentTheme) return;
         theme = currentTheme;
 
+        const colours = themes[theme];
+        const swatches = document.querySelectorAll('.pallet .swatch');
+
         const useedits = document.querySelector('#useedits').checked;
         const editinputs = document.querySelectorAll('.editpallet .editinput');
 
-        const colours = themes[theme];
-        const swatches = document.querySelectorAll('.pallet .swatch');
+        const lumas = document.querySelectorAll('.luma .swatch');
+
         for (let i = 0; i < 16; i++) {
           let hex;
           if (useedits) hex = parseColour(editinputs[i].value);
@@ -102,6 +121,10 @@
 
           if (!hex) hex = themehex;
           document.documentElement.style.setProperty('--c' + i.toString(16), hex);
+
+          const luma = colourLuma(hex);
+          lumas[i].setHTMLUnsafe(i.toString(16) + '<br>' + luma);
+          document.documentElement.style.setProperty('--l' + i.toString(16), lumaToColour(luma));
         }
       }
     </script>
@@ -119,7 +142,8 @@
         vertical-align: middle;
       }
       .pallet,
-      .editpallet{
+      .editpallet,
+      .luma{
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -333,6 +357,25 @@
         <p style="color: var(--ce);">foreground e</p>
         <p style="color: var(--cf);">foreground f</p>
       </div>
+    </div>
+
+    <div class="luma">
+      <div class="swatch" style="background-color: var(--l0);">0</div>
+      <div class="swatch" style="background-color: var(--l1);">1</div>
+      <div class="swatch" style="background-color: var(--l2);">2</div>
+      <div class="swatch" style="background-color: var(--l3);">3</div>
+      <div class="swatch" style="background-color: var(--l4);">4</div>
+      <div class="swatch" style="background-color: var(--l5);">5</div>
+      <div class="swatch" style="background-color: var(--l6);">6</div>
+      <div class="swatch" style="background-color: var(--l7);">7</div>
+      <div class="swatch" style="background-color: var(--l8);">8</div>
+      <div class="swatch" style="background-color: var(--l9);">9</div>
+      <div class="swatch" style="background-color: var(--la);">a</div>
+      <div class="swatch" style="background-color: var(--lb);">b</div>
+      <div class="swatch" style="background-color: var(--lc);">c</div>
+      <div class="swatch" style="background-color: var(--ld);">d</div>
+      <div class="swatch" style="background-color: var(--le);">e</div>
+      <div class="swatch" style="background-color: var(--lf);">f</div>
     </div>
 
     <script>loadButtons(); applyTheme('fae');</script>
