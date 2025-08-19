@@ -60,7 +60,7 @@
       }
 
       function lumaToColour(luma) {
-        const hex = luma.toString(16);
+        const hex = luma.toString(16).padStart(2, "0");
         return '#' + hex + hex + hex;
       }
 
