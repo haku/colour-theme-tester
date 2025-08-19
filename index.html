@@ -76,6 +76,19 @@
         const useedits = document.querySelector('#useedits');
         useedits.onchange = (e) => applyTheme();
 
+        if (window.location.hash) {
+          const editinputs = document.querySelectorAll('.editpallet .editinput');
+          window.location.hash.replace(/^#/, '').split(',').forEach((item) => {
+            const parts = item.split('=');
+            if (parts.length != 2) return;
+            if (!parts[0].match(/^c[0-f]$/)) return;
+            const i = parseInt(parts[0].substr(1, 1), 16);
+            const col = parseColour(parts[1]);
+            if (!col) return;
+            editinputs[i].value = col;
+          });
+        }
+
         const editswatchs = document.querySelectorAll('.editpallet .swatch');
         editswatchs.forEach((swatch) => {
           const input = swatch.querySelector('.editinput');
@@ -107,12 +120,15 @@
 
         const useedits = document.querySelector('#useedits').checked;
         const editinputs = document.querySelectorAll('.editpallet .editinput');
+        let fragment = "";
 
         const lumas = document.querySelectorAll('.luma .swatch');
 
         for (let i = 0; i < 16; i++) {
           let hex;
-          if (useedits) hex = parseColour(editinputs[i].value);
+          const editHex = parseColour(editinputs[i].value);
+          if (editHex) fragment += "c" + i.toString(16) + "=" + editHex.replace('#', '') + ",";
+          if (useedits) hex = editHex;
 
           const swatch = swatches[i];
           swatch.style.setProperty('background-color', colours[i]);
@@ -126,6 +142,8 @@
           lumas[i].setHTMLUnsafe(i.toString(16) + '<br>' + luma);
           document.documentElement.style.setProperty('--l' + i.toString(16), lumaToColour(luma));
         }
+
+        if (fragment) window.location.hash = fragment;
       }
     </script>
     <style>
