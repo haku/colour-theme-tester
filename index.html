@@ -145,6 +145,24 @@
 
         if (fragment) window.location.hash = fragment;
       }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.shiftKey) return;
+        if (!e.altKey) {
+          switch (e.target.tagName.toLowerCase()) {
+            case 'input':
+            case 'textarea':
+              return;
+          }
+        }
+        switch (e.key) {
+          case 'e':
+            event.preventDefault();
+            const useedits = document.querySelector('#useedits');
+            useedits.checked = !useedits.checked;
+            break;
+        }
+      });
     </script>
     <style>
       :root, input {
