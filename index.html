@@ -123,7 +123,7 @@
         const editinputs = document.querySelectorAll('.editpallet .editinput');
         let fragment = "";
 
-        const lumas = document.querySelectorAll('.luma .swatch');
+        const lumas = document.querySelectorAll('.pallet .luma');
 
         for (let i = 0; i < 16; i++) {
           let hex;
@@ -140,7 +140,7 @@
           document.documentElement.style.setProperty('--c' + i.toString(16), hex);
 
           const luma = colourLuma(hex);
-          lumas[i].setHTMLUnsafe(i.toString(16) + '<br>' + luma);
+          lumas[i].innerText = luma;
           document.documentElement.style.setProperty('--l' + i.toString(16), lumaToColour(luma));
         }
 
@@ -178,22 +178,22 @@
         vertical-align: middle;
       }
       .pallet,
-      .editpallet,
-      .luma{
+      .editpallet {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        width: 30em;
+        width: 72em;
         padding: 1em;
       }
-      .swatch{
+      .swatch {
         margin: 0em;
         text-align: center;
         padding: 1em;
-        color: #fff;
         text-shadow: 1px 1px black;
-        width: 6em;
-        height: 3em;
+      }
+      .luma {
+        text-align: center;
+        padding: 0.2em;
+        text-shadow: 1px 1px black;
       }
       .editinput {
         width: 11ex;
@@ -259,6 +259,25 @@
       <div class="swatch" style="background-color: #000">d<br><input type="text" class="editinput"></input></div>
       <div class="swatch" style="background-color: #000">e<br><input type="text" class="editinput"></input></div>
       <div class="swatch" style="background-color: #000">f<br><input type="text" class="editinput"></input></div>
+    </div>
+
+    <div class="pallet">
+      <div class="luma" style="background-color: var(--l0);"></div>
+      <div class="luma" style="background-color: var(--l1);"></div>
+      <div class="luma" style="background-color: var(--l2);"></div>
+      <div class="luma" style="background-color: var(--l3);"></div>
+      <div class="luma" style="background-color: var(--l4);"></div>
+      <div class="luma" style="background-color: var(--l5);"></div>
+      <div class="luma" style="background-color: var(--l6);"></div>
+      <div class="luma" style="background-color: var(--l7);"></div>
+      <div class="luma" style="background-color: var(--l8);"></div>
+      <div class="luma" style="background-color: var(--l9);"></div>
+      <div class="luma" style="background-color: var(--la);"></div>
+      <div class="luma" style="background-color: var(--lb);"></div>
+      <div class="luma" style="background-color: var(--lc);"></div>
+      <div class="luma" style="background-color: var(--ld);"></div>
+      <div class="luma" style="background-color: var(--le);"></div>
+      <div class="luma" style="background-color: var(--lf);"></div>
     </div>
 
     <div class="columns">
@@ -393,25 +412,6 @@
         <p style="color: var(--ce);">foreground e</p>
         <p style="color: var(--cf);">foreground f</p>
       </div>
-    </div>
-
-    <div class="luma">
-      <div class="swatch" style="background-color: var(--l0);">0</div>
-      <div class="swatch" style="background-color: var(--l1);">1</div>
-      <div class="swatch" style="background-color: var(--l2);">2</div>
-      <div class="swatch" style="background-color: var(--l3);">3</div>
-      <div class="swatch" style="background-color: var(--l4);">4</div>
-      <div class="swatch" style="background-color: var(--l5);">5</div>
-      <div class="swatch" style="background-color: var(--l6);">6</div>
-      <div class="swatch" style="background-color: var(--l7);">7</div>
-      <div class="swatch" style="background-color: var(--l8);">8</div>
-      <div class="swatch" style="background-color: var(--l9);">9</div>
-      <div class="swatch" style="background-color: var(--la);">a</div>
-      <div class="swatch" style="background-color: var(--lb);">b</div>
-      <div class="swatch" style="background-color: var(--lc);">c</div>
-      <div class="swatch" style="background-color: var(--ld);">d</div>
-      <div class="swatch" style="background-color: var(--le);">e</div>
-      <div class="swatch" style="background-color: var(--lf);">f</div>
     </div>
 
     <script>loadButtons(); applyTheme('fae');</script>
