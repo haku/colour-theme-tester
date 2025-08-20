@@ -163,6 +163,11 @@
             break;
         }
       });
+
+      window.onload = () => {
+        loadButtons();
+        applyTheme('fae');
+      };
     </script>
     <style>
       :root, input {
@@ -220,7 +225,7 @@
   </head>
   <body>
     <div class="buttons" style="padding: 0.5em;">
-      <input type="checkbox" id="useedits"></input><label for="useedits">edits</label>
+      <input type="checkbox" id="useedits" checked></input><label for="useedits">edits</label>
     </div>
 
     <div class="pallet">
@@ -413,7 +418,5 @@
         <p style="color: var(--cf);">foreground f</p>
       </div>
     </div>
-
-    <script>loadButtons(); applyTheme('fae');</script>
   </body>
 </html>
